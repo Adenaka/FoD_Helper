@@ -1,0 +1,34 @@
+c:\users\rps\documents\visual studio 2012\Projects\WindowsApplication1\WindowsApplication1\bin\Debug\WindowsApplication1.exe.config
+c:\users\rps\documents\visual studio 2012\Projects\WindowsApplication1\WindowsApplication1\bin\Debug\WindowsApplication1.exe
+c:\users\rps\documents\visual studio 2012\Projects\WindowsApplication1\WindowsApplication1\bin\Debug\WindowsApplication1.pdb
+c:\users\rps\documents\visual studio 2012\Projects\WindowsApplication1\WindowsApplication1\bin\Debug\WindowsApplication1.xml
+c:\users\rps\documents\visual studio 2012\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.Form1.resources
+c:\users\rps\documents\visual studio 2012\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.Resources.resources
+c:\users\rps\documents\visual studio 2012\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.vbproj.GenerateResource.Cache
+c:\users\rps\documents\visual studio 2012\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.exe
+c:\users\rps\documents\visual studio 2012\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.xml
+c:\users\rps\documents\visual studio 2012\Projects\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.pdb
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.vbprojResolveAssemblyReference.cache
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.vbproj.GenerateResource.Cache
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\bin\Debug\Adenaka Gold Helper.exe.config
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\bin\Debug\Adenaka Gold Helper.exe
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\bin\Debug\Adenaka Gold Helper.pdb
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\bin\Debug\Adenaka Gold Helper.xml
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\obj\Debug\GoldHelper.about.resources
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\obj\Debug\GoldHelper.main.resources
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\obj\Debug\GoldHelper.Resources.resources
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\obj\Debug\Adenaka Gold Helper.exe
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\obj\Debug\Adenaka Gold Helper.xml
+C:\Users\Adenaka\Desktop\WindowsApplication1\WindowsApplication1\obj\Debug\Adenaka Gold Helper.pdb
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\bin\Debug\Adenaka Gold Helper.exe.config
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\obj\Debug\Adenaka Gold Helper.exe
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\obj\Debug\Adenaka Gold Helper.xml
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\obj\Debug\Adenaka Gold Helper.pdb
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\bin\Debug\Adenaka Gold Helper.exe
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\bin\Debug\Adenaka Gold Helper.pdb
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\bin\Debug\Adenaka Gold Helper.xml
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.vbprojResolveAssemblyReference.cache
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\obj\Debug\GoldHelper.about.resources
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\obj\Debug\GoldHelper.main.resources
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\obj\Debug\GoldHelper.Resources.resources
+E:\Yadisk\YandexDisk\WindowsApplication1\WindowsApplication1\obj\Debug\WindowsApplication1.vbproj.GenerateResource.Cache

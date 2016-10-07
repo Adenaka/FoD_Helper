@@ -1,0 +1,8 @@
+C:\Users\RPS\YandexDisk\FoD_helper\WindowsApplication1\bin\Debug\Adenaka Gold Helper.exe.config
+C:\Users\RPS\YandexDisk\FoD_helper\WindowsApplication1\obj\Debug\Adenaka Gold Helper.exe
+C:\Users\RPS\YandexDisk\FoD_helper\WindowsApplication1\obj\Debug\Adenaka Gold Helper.xml
+C:\Users\RPS\YandexDisk\FoD_helper\WindowsApplication1\obj\Debug\Adenaka Gold Helper.pdb
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\bin\Debug\Adenaka Gold Helper.exe.config
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\Adenaka Gold Helper.exe
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\Adenaka Gold Helper.xml
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\Adenaka Gold Helper.pdb
