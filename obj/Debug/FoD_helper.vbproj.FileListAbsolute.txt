@@ -6,3 +6,11 @@ C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\bin\Debug\Adenaka Gold Helper.exe.
 C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\Adenaka Gold Helper.exe
 C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\Adenaka Gold Helper.xml
 C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\Adenaka Gold Helper.pdb
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\FoD_helper.vbprojResolveAssemblyReference.cache
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\GoldHelper.about.resources
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\GoldHelper.main.resources
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\GoldHelper.Resources.resources
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\obj\Debug\FoD_helper.vbproj.GenerateResource.Cache
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\bin\Debug\Adenaka Gold Helper.exe
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\bin\Debug\Adenaka Gold Helper.pdb
+C:\Users\RPS\YandexDisk\FoD_helper\Fod_helper\bin\Debug\Adenaka Gold Helper.xml
