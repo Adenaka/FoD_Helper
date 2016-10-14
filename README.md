@@ -14,10 +14,17 @@ Game stats, "schooling" function.
 None
 
 # Download last version 
-# Debug 1.1 - https://github.com/Adenaka/FoD_Helper/blob/master/bin/Debug/Adenaka%20Gold%20Helper.exe
+# Debug 1.2 - https://github.com/Adenaka/FoD_Helper/blob/master/bin/Debug/Adenaka%20Gold%20Helper.exe
 
 # Version description
 # D(ebug), R(elease)
+
+# 1.2 D
+Fix translate en\ru
+Fix about
+Added differents on results
+Added Midas Touch Buff
+Removed old schooling func
 
 # 1.1 D
 Added guild
