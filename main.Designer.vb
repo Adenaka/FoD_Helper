@@ -55,10 +55,12 @@ Partial Class main
         Me.BonusMenu = New System.Windows.Forms.TabPage()
         Me.ResultMenu = New System.Windows.Forms.TabPage()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.MidasTouchBox = New System.Windows.Forms.CheckBox()
         Me.ControlTab.SuspendLayout()
         Me.TaskMenu.SuspendLayout()
         Me.AdvMenu.SuspendLayout()
         Me.GuildMenu.SuspendLayout()
+        Me.BonusMenu.SuspendLayout()
         Me.ResultMenu.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -93,6 +95,7 @@ Partial Class main
         'Schooling_checker
         '
         Me.Schooling_checker.AutoSize = True
+        Me.Schooling_checker.Enabled = False
         Me.Schooling_checker.Location = New System.Drawing.Point(22, 43)
         Me.Schooling_checker.Name = "Schooling_checker"
         Me.Schooling_checker.Size = New System.Drawing.Size(82, 17)
@@ -118,9 +121,9 @@ Partial Class main
         '
         'Console_out
         '
-        Me.Console_out.Enabled = False
         Me.Console_out.Location = New System.Drawing.Point(13, 297)
         Me.Console_out.Name = "Console_out"
+        Me.Console_out.ReadOnly = True
         Me.Console_out.Size = New System.Drawing.Size(278, 150)
         Me.Console_out.TabIndex = 6
         Me.Console_out.Text = "Используйте кнопки после завершения функции" & Global.Microsoft.VisualBasic.ChrW(10) & "Use buttons after function ending"
@@ -360,6 +363,7 @@ Partial Class main
         '
         'BonusMenu
         '
+        Me.BonusMenu.Controls.Add(Me.MidasTouchBox)
         Me.BonusMenu.Location = New System.Drawing.Point(4, 22)
         Me.BonusMenu.Name = "BonusMenu"
         Me.BonusMenu.Size = New System.Drawing.Size(752, 241)
@@ -388,6 +392,16 @@ Partial Class main
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "flightofdragons.net"
         '
+        'MidasTouchBox
+        '
+        Me.MidasTouchBox.AutoSize = True
+        Me.MidasTouchBox.Location = New System.Drawing.Point(14, 15)
+        Me.MidasTouchBox.Name = "MidasTouchBox"
+        Me.MidasTouchBox.Size = New System.Drawing.Size(148, 17)
+        Me.MidasTouchBox.TabIndex = 0
+        Me.MidasTouchBox.Text = "Прикосновение Мидаса"
+        Me.MidasTouchBox.UseVisualStyleBackColor = True
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -405,8 +419,8 @@ Partial Class main
         Me.Controls.Add(Me.About_Button)
         Me.Controls.Add(Me.Start_Button)
         Me.Name = "main"
-        Me.Text = "Adenaka's Gold Helper  v.1.1 (Beg for more free time for yourself, little reptile" &
-    ") "
+        Me.Text = "Adenaka's Gold Helper  v.1.2 b.1 (Beg for more free time for yourself, little rep" &
+    "tile) "
         Me.ControlTab.ResumeLayout(False)
         Me.TaskMenu.ResumeLayout(False)
         Me.TaskMenu.PerformLayout()
@@ -414,6 +428,8 @@ Partial Class main
         Me.AdvMenu.PerformLayout()
         Me.GuildMenu.ResumeLayout(False)
         Me.GuildMenu.PerformLayout()
+        Me.BonusMenu.ResumeLayout(False)
+        Me.BonusMenu.PerformLayout()
         Me.ResultMenu.ResumeLayout(False)
         Me.ResultMenu.PerformLayout()
         Me.ResumeLayout(False)
@@ -453,4 +469,5 @@ Partial Class main
     Friend WithEvents guildlabel2 As Label
     Friend WithEvents guildlabel1 As Label
     Friend WithEvents GuildCheck1 As ComboBox
+    Friend WithEvents MidasTouchBox As CheckBox
 End Class

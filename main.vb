@@ -11,12 +11,13 @@ Public Class main
     Public guildvar2 As Integer = 0
     Public guildcon(3, 5) As Integer
     Public guildgold As Integer = 0
+    Public midastouchbuff As Boolean = False
 #End Region
 #Region "Function"
     Public Sub Start_Button_Click(sender As Object, e As EventArgs) Handles Start_Button.Click
         ' Получаем информацию для действий
-        Dim oldgold As Integer = CInt(Gold_in_bank.Text)
-        Dim newgold As Integer = CInt(gold_var.Text)
+        Dim goldinbank As Integer = CInt(Gold_in_bank.Text)
+        Dim goldtask As Integer = CInt(gold_var.Text)
         Dim days_needed As Integer = 0
         Dim scavenging As Boolean = Scavenge_checker.Checked
         Dim schooling As Boolean = Schooling_checker.Checked
@@ -25,6 +26,7 @@ Public Class main
         Dim hoard_text As String = Hoard_Check.Text
         Dim GD_type As Integer = 0
         Dim GD_text As String = CheckGD.Text
+
 
         If (hoard_text = "Не требуется" Or hoard_text = "Not needed") Then
             hoard_type = 0
@@ -41,7 +43,7 @@ Public Class main
         End If
 
         ConsoleClear() 'очищаем консоль
-        If (oldgold > 50000000) Then
+        If (goldinbank > 50000000) Then
             errors = errors + 1
             If (language = "ru") Then
                 ConsoleOut("Ошибка: сумма в банке больше 50кк (50.000.000)")
@@ -49,7 +51,7 @@ Public Class main
                 ConsoleOut("Error: gold in your bank is above 50kk (50.000.000)")
             End If
         End If
-        If (newgold = 0) Then
+        If (goldtask = 0) Then
             errors = errors + 1
             If (language = "ru") Then
                 ConsoleOut("Ошибка: Не указано требуемое количество золота")
@@ -57,7 +59,7 @@ Public Class main
                 ConsoleOut("Error: Needed gold is null")
             End If
         End If
-        If (oldgold = newgold) Then
+        If (goldinbank = goldtask) Then
             errors = errors + 1
             If (language = "ru") Then
                 ConsoleOut("Логическая ошибка: Аргументы совпадают")
@@ -65,7 +67,7 @@ Public Class main
                 ConsoleOut("Logical Error: Arguments are the same")
             End If
         End If
-        If (oldgold < 20 And scavenging = False) Then
+        If (goldinbank < 20 And scavenging = False) Then
             errors = errors + 1
             If (language = "ru") Then
                 ConsoleOut("Логическая ошибка: сумма в банке не возрастает и не восполняется за счет изучения местности")
@@ -81,7 +83,7 @@ Public Class main
                 End If
             End If
         End If
-        If (newgold > 50000000 And hoard_type = 0) Then
+        If (goldtask > 50000000 And hoard_type = 0) Then
             errors = errors + 1
             If (language = "ru") Then
                 ConsoleOut("Логическая ошибка: нужное количество золота не умещается в банк. Проверьте опцию сокровищницы.")
@@ -89,7 +91,7 @@ Public Class main
                 ConsoleOut("Logical Error: Required gold does not fit into the bank. Check hoard option")
             End If
         End If
-        If (GD_type = 0 And oldgold > newgold) Then
+        If (GD_type = 0 And goldinbank > goldtask) Then
             errors = errors + 1
             If (language = "ru") Then
                 ConsoleOut("Логическая ошибка: аргумент требуемого золота ниже аргумента золота в банке")
@@ -97,7 +99,7 @@ Public Class main
                 ConsoleOut("Logical Error: Needed gold argument are under gold in bank argument")
             End If
         End If
-        If (GD_type = 1 And newgold > 980392) Then
+        If (GD_type = 1 And goldtask > 980392) Then
             errors = errors + 1
             If (language = "ru") Then
                 ConsoleOut("Логическая ошибка: Значение прироста не должно превышать 980392")
@@ -113,16 +115,16 @@ Public Class main
         End If
         If (errors = 0) Then
             If (GD_type = 0) Then
-                SummFunction(oldgold, newgold, scavenging, schooling, hoard_type)
+                SummFunction(goldinbank, goldtask, scavenging, schooling, hoard_type)
             ElseIf (GD_type = 1) Then
-                GrowFunction(oldgold, newgold, scavenging, schooling, hoard_type, GD_type)
+                GrowFunction(goldinbank, goldtask, scavenging, schooling, hoard_type, GD_type)
             End If
         End If
 
         days_label.Text = days
     End Sub
 
-    'Старт функции сбора золота
+
     Public Sub SummFunction(gold1 As Integer, gold2 As Integer, boolscav As Boolean, boolsch As Boolean, hoard_type As Integer)
         days = 0
         Dim rand_scav As Integer = 0
@@ -130,6 +132,8 @@ Public Class main
         Dim looper As Integer = 0
         Dim optifyeddegree As Integer = 980392
         Dim gethoard As Boolean = False
+        Dim oldgold As Integer = gold1
+        Dim oldgrowth As Integer = 0
         ReDim Preserve output(days)
         If (hoard_type = 1) Then
             gethoard = True
@@ -141,6 +145,8 @@ Public Class main
         End If
         Do Until gold1 >= gold2
             days = days + 1
+            oldgold = gold1
+            oldgrowth = degree
             ReDim Preserve output(UBound(output) + 1)
             If (language = "ru") Then
                 output(days) = output(days) & "---День " & days & "---" & vbNewLine
@@ -153,11 +159,19 @@ Public Class main
                 degree = optifyeddegree
             End If
             If (language = "ru") Then
-                output(days) = output(days) & "Ежедневный приход: " & degree & vbNewLine
+                If (oldgrowth = 0) Then
+                    output(days) = output(days) & "Ежедневный приход: " & degree & vbNewLine
+                Else
+                    output(days) = output(days) & "Ежедневный приход: " & degree & " (" & plusminusfunc(oldgrowth, degree) & ")" & vbNewLine
+                End If
             Else
-                output(days) = output(days) & "Everyday bank bonus: " & degree & vbNewLine
+                If (oldgrowth = 0) Then
+                    output(days) = output(days) & "Everyday bank bonus: " & degree & vbNewLine
+                Else
+                    output(days) = output(days) & "Everyday bank bonus: " & degree & " (" & plusminusfunc(oldgrowth, degree) & ")" & vbNewLine
+                End If
             End If
-            gold1 = gold1 + guildgold
+                gold1 = gold1 + guildgold
             If (language = "ru") Then
                 output(days) = output(days) & "Прибыль с гильдии: " & guildgold & vbNewLine
             Else
@@ -170,18 +184,19 @@ Public Class main
                 Else
                     output(days) = output(days) & "Scavenging (random): " & rand_scav & vbNewLine
                 End If
+                EXPGain(days)
             End If
-            If (boolsch = True And looper = 7 And gold1 > 20000) Then
-                looper = 0
-                gold1 = gold1 - 20000
-                If (language = "ru") Then
-                    output(days) = output(days) & "Вы потратили 20000 на обучение (каждую неделю)" & vbNewLine
-                Else
-                    output(days) = output(days) & "You payed 20000 for education (every week)" & vbNewLine
-                End If
-            End If
+            'If (boolsch = True And looper = 7 And gold1 > 20000) Then
+            'looper = 0
+            'gold1 = gold1 - 20000
+            'If (language = "ru") Then
+            'output(days) = output(days) & "Вы потратили 20000 на обучение (каждую неделю)" & vbNewLine
+            'Else
+            'output(days) = output(days) & "You payed 20000 for education (every week)" & vbNewLine
+            'End If
+            'End If
             gold1 = gold1 + degree + rand_scav
-            If (hoard_type = 2 And gethoard = False And degree >= 500000) Then
+            If (hoard_type = 2 And gethoard = False And oldgold >= 500000) Then
                 gold1 = gold1 - 500000
                 gethoard = True
                 If (language = "ru") Then
@@ -190,18 +205,26 @@ Public Class main
                     output(days) = output(days) & "You got a personal hoard without gold missing (everyday bank bonus)" & vbNewLine
                 End If
             End If
-            If (gold1 >= 50000000 And gethoard = False) Then
+            If (gold1 >= 50000000 And gethoard = False And midastouchbuff = False) Then
                 If (language = "ru") Then
-                    ConsoleOut("Выход из функции: количество золота не умещается в банке, а сокровищница не приобретена" & vbNewLine)
+                    ConsoleOut("Выход из функции: количество золота не умещается в банке, сокровищница не приобретена и прикосновение Мидаса отсутствует (50кк)" & vbNewLine)
                 Else
-                    ConsoleOut("Function exit: your gold is not fit into bank and personal hoard is not buyed" & vbNewLine)
+                    ConsoleOut("Function exit: your gold is not fit into bank, personal hoard is not buyed and not having a Midas Touch buff (50kk)" & vbNewLine)
+                End If
+                Exit Do
+            End If
+            If (gold1 >= 100000000 And gethoard = False And midastouchbuff = True) Then
+                If (language = "ru") Then
+                    ConsoleOut("Выход из функции: количество золота не умещается в банке, а сокровищница не приобретена. Прикосновение Мидаса включено (100кк)" & vbNewLine)
+                Else
+                    ConsoleOut("Function exit: your gold is not fit into bank and personal hoard is not buyed. Midas Touch activated (100kk)" & vbNewLine)
                 End If
                 Exit Do
             End If
             If (language = "ru") Then
-                output(days) = output(days) & "Собрано золота: " & gold1 & vbNewLine
+                output(days) = output(days) & "Собрано золота: " & gold1 & " (" & plusminusfunc(oldgold, gold1) & ")" & vbNewLine
             Else
-                output(days) = output(days) & "Gold collected: " & gold1 & vbNewLine
+                output(days) = output(days) & "Gold collected: " & gold1 & " (" & plusminusfunc(oldgold, gold1) & ")" & vbNewLine
             End If
         Loop
         If (language = "ru") Then
@@ -219,6 +242,8 @@ Public Class main
         Dim looper As Integer = 0
         Dim optifyeddegree As Integer = 980392
         Dim gethoard As Boolean = False
+        Dim oldgold As Integer = gold1
+        Dim oldgrowth As Integer = 0
         ReDim Preserve output(days)
         If (hoard_type = 1) Then
             gethoard = True
@@ -230,6 +255,8 @@ Public Class main
         End If
         Do Until degree >= gold2
             days = days + 1
+            oldgold = gold1
+            oldgrowth = degree
             ReDim Preserve output(UBound(output) + 1)
             If (language = "ru") Then
                 output(days) = output(days) & "---День " & days & "---" & vbNewLine
@@ -242,9 +269,17 @@ Public Class main
                 degree = optifyeddegree
             End If
             If (language = "ru") Then
-                output(days) = output(days) & "Ежедневный приход: " & degree & vbNewLine
+                If (oldgrowth = 0) Then
+                    output(days) = output(days) & "Ежедневный приход: " & degree & vbNewLine
+                Else
+                    output(days) = output(days) & "Ежедневный приход: " & degree & " (" & plusminusfunc(oldgrowth, degree) & ")" & vbNewLine
+                End If
             Else
-                output(days) = output(days) & "Everyday bank bonus: " & degree & vbNewLine
+                If (oldgrowth = 0) Then
+                    output(days) = output(days) & "Everyday bank bonus: " & degree & vbNewLine
+                Else
+                    output(days) = output(days) & "Everyday bank bonus: " & degree & " (" & plusminusfunc(oldgrowth, degree) & ")" & vbNewLine
+                End If
             End If
             gold1 = gold1 + guildgold
             If (language = "ru") Then
@@ -259,18 +294,19 @@ Public Class main
                 Else
                     output(days) = output(days) & "Scavenging (random): " & rand_scav & vbNewLine
                 End If
+                EXPGain(days)
             End If
-            If (boolsch = True And looper = 7 And gold1 > 20000) Then
-                looper = 0
-                gold1 = gold1 - 20000
-                If (language = "ru") Then
-                    output(days) = output(days) & "Вы потратили 20000 на обучение (каждую неделю)" & vbNewLine
-                Else
-                    output(days) = output(days) & "You payed 20000 for education (every week)" & vbNewLine
-                End If
-            End If
+            'If (boolsch = True And looper = 7 And gold1 > 20000) Then
+            'looper = 0
+            'gold1 = gold1 - 20000
+            'If (language = "ru") Then
+            'output(days) = output(days) & "Вы потратили 20000 на обучение (каждую неделю)" & vbNewLine
+            'Else
+            'output(days) = output(days) & "You payed 20000 for education (every week)" & vbNewLine
+            'End If
+            'End If
             gold1 = gold1 + degree + rand_scav
-            If (hoard_type = 2 And gethoard = False And degree >= 500000) Then
+            If (hoard_type = 2 And gethoard = False And oldgold >= 500000) Then
                 gold1 = gold1 - 500000
                 gethoard = True
                 If (language = "ru") Then
@@ -279,18 +315,26 @@ Public Class main
                     output(days) = output(days) & "You got a personal hoard without gold missing (everyday bank bonus)" & vbNewLine
                 End If
             End If
-            If (gold1 >= 50000000 And gethoard = False) Then
+            If (gold1 >= 50000000 And gethoard = False And midastouchbuff = False) Then
                 If (language = "ru") Then
-                    ConsoleOut("Выход из функции: количество золота не умещается в банке, а сокровищница не приобретена" & vbNewLine)
+                    ConsoleOut("Выход из функции: количество золота не умещается в банке, сокровищница не приобретена и прикосновение Мидаса отсутствует (50кк)" & vbNewLine)
                 Else
-                    ConsoleOut("Function exit: your gold is not fit into bank and personal hoard is not buyed" & vbNewLine)
+                    ConsoleOut("Function exit: your gold is not fit into bank, personal hoard is not buyed and not having a Midas Touch buff (50kk)" & vbNewLine)
+                End If
+                Exit Do
+            End If
+            If (gold1 >= 100000000 And gethoard = False And midastouchbuff = True) Then
+                If (language = "ru") Then
+                    ConsoleOut("Выход из функции: количество золота не умещается в банке, а сокровищница не приобретена. Прикосновение Мидаса включено (100кк)" & vbNewLine)
+                Else
+                    ConsoleOut("Function exit: your gold is not fit into bank and personal hoard is not buyed. Midas Touch activated (100kk)" & vbNewLine)
                 End If
                 Exit Do
             End If
             If (language = "ru") Then
-                output(days) = output(days) & "Собрано золота: " & gold1 & vbNewLine
+                output(days) = output(days) & "Собрано золота: " & gold1 & " (" & plusminusfunc(oldgold, gold1) & ")" & vbNewLine
             Else
-                output(days) = output(days) & "Gold collected: " & gold1 & vbNewLine
+                output(days) = output(days) & "Gold collected: " & gold1 & " (" & plusminusfunc(oldgold, gold1) & ")" & vbNewLine
             End If
         Loop
         If (language = "ru") Then
@@ -300,7 +344,7 @@ Public Class main
         End If
     End Sub
 #End Region
-#Region "Zero Day\Debug"
+#Region "Zero Day\Debug\Basic Functions"
     'Вывод на экран
     Public Sub ConsoleOut(Text As String)
         output(0) = output(0) & vbNewLine & Text
@@ -314,6 +358,19 @@ Public Class main
             output(0) = "Log cleared."
         End If
     End Sub
+    Public Function plusminusfunc(oldvar As Integer, newvar As Integer)
+        If (oldvar <= newvar) Then
+            Return "+" & (newvar - oldvar)
+        ElseIf (oldvar > newvar) Then
+            Return (oldvar - newvar)
+        End If
+        If (language = "ru") Then
+            ConsoleOut("Ошибка: PlusMinusFunc не имеет ответа. Vars: " & oldvar & ", " & newvar)
+        ElseIf (language = "en") Then
+            ConsoleOut("Error: PlusMinusFunc not have a respond. Vars: " & oldvar & ", " & newvar)
+        End If
+        Return "Error"
+    End Function
 #End Region
 #Region "Using Buttons"
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
@@ -398,6 +455,15 @@ Public Class main
             GuildCheck2.Items(2) = "Jorneyman"
             GuildCheck2.Items(3) = "Expert"
             GuildCheck2.Items(4) = "Master"
+            TaskMenu.Text = "Task"
+            AdvMenu.Text = "Advanced"
+            GuildMenu.Text = "Guild"
+            BonusMenu.Text = "Bonuses"
+            ResultMenu.Text = "Results"
+            MidasTouchBox.Text = "Midas Touch"
+            'about.vb
+            about.RichTextBox1.Text = "This program will show you how many days you needed for reaching entered gold var." & vbNewLine & "This program give you approximate numbers and they may differ from those in game" & vbNewLine & vbNewLine & "License: GNU General Public License v3" & vbNewLine & "Type: freeware" & vbNewLine & "Program can be used As Is." & vbNewLine & "Program Not have any malicious Or ad code." & vbNewLine & "Program Not For sale." & vbNewLine & vbNewLine & "Creator\Coder : Adenaka" & vbNewLine & vbNewLine & "23 september 2016" & vbNewLine & vbNewLine & "Click on text to close this window"
+            about.Text = "About..."
         Else
             language = "ru"
             Start_Button.Text = "Старт"
@@ -428,6 +494,15 @@ Public Class main
             GuildCheck2.Items(2) = "Подмастерье"
             GuildCheck2.Items(3) = "Эксперт"
             GuildCheck2.Items(4) = "Мастер"
+            TaskMenu.Text = "Задача"
+            AdvMenu.Text = "Дополнительно"
+            GuildMenu.Text = "Гильдия"
+            BonusMenu.Text = "Бонусы"
+            ResultMenu.Text = "Результат"
+            MidasTouchBox.Text = "Прикосновение Мидаса"
+            'about.vb
+            about.RichTextBox1.Text = "Программа для рассчитывания дней на то, чтобы получить введенную сумму золота." & vbNewLine & "Программа выдает лишь приблизительные числа и они могут отличаться от тех, что в игре" & vbNewLine & vbNewLine & "Лицензия: GNU General Public License v3" & vbNewLine & "Тип: freeware" & vbNewLine & "Программа используется как есть (as is)." & vbNewLine & "Не содержит вредоносного или рекламного кода." & vbNewLine & "Не подлежит продаже." & vbNewLine & vbNewLine & "Создатель\ Кодер : Adenaka" & vbNewLine & vbNewLine & "23 сентября 2016" & vbNewLine & vbNewLine & "Нажмите на текст, чтобы закрыть это окно"
+            about.Text = "О программе"
         End If
     End Sub
 #End Region
